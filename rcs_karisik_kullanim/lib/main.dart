@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -38,21 +38,36 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Row(
+      body: Stack(
         children: [
-          Container(
-            margin: const EdgeInsets.only(left: 30.0, top: 5.0),
-            width: 200,
-            height: 200,
-            child: Text("Deneme"),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              border: Border.all(
-                color: Colors.blue,
-                width: 3.0,
+          Container(width: 400, height: 400, color: Colors.red),
+          Row(
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.white,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
+              Container(
+                width: 100,
+                height: 100,
+                color: Colors.blue,
+              ),
+              Column(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.yellow,
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.green,
+                  ),
+                ],
+              )
+            ],
           ),
         ],
       ),
