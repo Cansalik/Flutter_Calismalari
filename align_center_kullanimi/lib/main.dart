@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.red,
               child: Align(
                 alignment: Alignment.center,
-                child: Text("Merhaba"),
+                child: Text("Deneme"),
               ),
             ),
           ],
