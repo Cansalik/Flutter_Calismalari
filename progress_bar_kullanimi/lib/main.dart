@@ -34,6 +34,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  late bool progressBarGorun = false;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +49,30 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
 
+            Visibility(
+              visible: progressBarGorun,
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+              ),
+            ),
+            ElevatedButton(
+              child: Text("Başla"),
+              onPressed: ()
+              {
+                setState(() {
+                  progressBarGorun = true;
+                });
+              },
+            ),
+            ElevatedButton(
+              child: Text("Dur"),
+              onPressed: ()
+              {
+                setState(() {
+                  progressBarGorun = false;
+                });
+              },
+            ),
           ],
         ),
       ),
