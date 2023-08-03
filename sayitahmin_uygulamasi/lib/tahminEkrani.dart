@@ -1,3 +1,4 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -17,9 +18,6 @@ class _tahminEkraniState extends State<tahminEkrani> {
   late int rasgeleSayi = 0;
   late int kalanHak = 5;
   late String ipucu = "";
-
-
-
 
   @override
   void initState() {
@@ -65,10 +63,10 @@ class _tahminEkraniState extends State<tahminEkrani> {
                 style: ElevatedButton.styleFrom(
                     primary: Colors.purpleAccent
                 ),
-                onPressed: (){
-
+                onPressed:(){
                   setState(() {
                     kalanHak = kalanHak - 1;
+
                   });
 
                   late int tahmin = int.parse(tfTahmin.text);
