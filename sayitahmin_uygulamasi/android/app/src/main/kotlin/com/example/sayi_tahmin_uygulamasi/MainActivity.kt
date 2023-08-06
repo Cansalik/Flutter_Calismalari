@@ -1,4 +1,4 @@
-package com.example.sayitahmin_uygulamasi
+package com.example.sayi_tahmin_uygulamasi
 
 import io.flutter.embedding.android.FlutterActivity
 

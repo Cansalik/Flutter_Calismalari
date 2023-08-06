@@ -1,4 +1,4 @@
-# sayitahmin_uygulamasi
+# sayi_tahmin_uygulamasi
 
 A new Flutter project.
 

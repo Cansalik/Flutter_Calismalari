@@ -1,12 +1,8 @@
-import 'dart:html';
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sayitahmin_uygulamasi/sonucEkrani.dart';
+import 'package:sayi_tahmin_uygulamasi/sonucEkrani.dart';
 
 class tahminEkrani extends StatefulWidget {
-  const tahminEkrani({Key? key}) : super(key: key);
 
   @override
   State<tahminEkrani> createState() => _tahminEkraniState();
@@ -26,7 +22,6 @@ class _tahminEkraniState extends State<tahminEkrani> {
     rasgeleSayi = Random().nextInt(101); // 0 - 100 Arası Sayı üretir.
     print("Rasgele Sayımız: $rasgeleSayi");
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +68,7 @@ class _tahminEkraniState extends State<tahminEkrani> {
 
                   if(tahmin == rasgeleSayi)
                   {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => sonucEkrani(sonuc: true,)));
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => sonucEkrani(sonuc: true,)));
                     return;
                   }
                   if(tahmin > rasgeleSayi)
@@ -90,7 +85,7 @@ class _tahminEkraniState extends State<tahminEkrani> {
                   }
                   if(kalanHak == 0)
                   {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => sonucEkrani(sonuc: false,)));
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => sonucEkrani(sonuc: false,)));
                     return;
                   }
                   tfTahmin.text = "";

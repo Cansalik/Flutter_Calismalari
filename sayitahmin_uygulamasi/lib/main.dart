@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sayitahmin_uygulamasi/tahminEkrani.dart';
+import 'package:sayi_tahmin_uygulamasi/tahminEkrani.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,29 +14,30 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Anasayfa(),
+      home: MyHomePage(),
     );
   }
 }
 
-class Anasayfa extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
 
   @override
-  State<Anasayfa> createState() => _AnasayfaState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _AnasayfaState extends State<Anasayfa> {
+class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Anasayfa"),
+        title: Text("Sayı Tahmin Uygulaması"),
       ),
-      body: Center(
+      body:  Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -48,7 +49,7 @@ class _AnasayfaState extends State<Anasayfa> {
               child: ElevatedButton(
                 child: Text("OYUNA BAŞLA", style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.purpleAccent
+                    primary: Colors.purpleAccent
                 ),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) => tahminEkrani()));

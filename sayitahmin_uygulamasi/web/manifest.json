@@ -1,6 +1,6 @@
 {
-    "name": "sayitahmin_uygulamasi",
-    "short_name": "sayitahmin_uygulamasi",
+    "name": "sayi_tahmin_uygulamasi",
+    "short_name": "sayi_tahmin_uygulamasi",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

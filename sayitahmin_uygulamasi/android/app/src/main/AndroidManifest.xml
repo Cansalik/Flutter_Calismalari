@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="sayitahmin_uygulamasi"
+        android:label="Sayı Tahmin Uygulaması"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
