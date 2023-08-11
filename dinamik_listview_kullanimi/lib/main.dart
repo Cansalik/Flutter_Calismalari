@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+
   var ulkeler = ["Türkiye","Almanya","İtalya","Fransa","Çin"];
 
   @override
@@ -40,9 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Dinamik LİstView Kullanımı"),
       ),
       body: SizedBox(
-        height: 100,
         child: ListView.builder(
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           itemCount: ulkeler.length,
           itemBuilder: (context, indeks)
           {
