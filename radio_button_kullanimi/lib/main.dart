@@ -37,6 +37,11 @@ class _MyHomePageState extends State<MyHomePage> {
   late int radioDeger = 0;
 
 
+  // Default Radio Button Selected Item When App Starts.
+  String radioButtonItem = 'ONE';
+
+  // Group Value for Radio Button.
+  int id = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -45,54 +50,50 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RadioListTile(
-                title: Text("Galatasaray"),
+      body: Column(
+        children: <Widget>[
+          Padding(
+              padding: EdgeInsets.all(14.0),
+              child: Text('Selected Radio Item = ' + '$radioButtonItem',
+                  style: TextStyle(fontSize: 21))
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Radio(
                 value: 1,
-                groupValue: radioDeger,
-                activeColor: Colors.indigo,
-                onChanged: (int? veri)
-                {
+                groupValue: id,
+                onChanged: (val) {
                   setState(() {
-                    radioDeger = veri!;
+                    radioButtonItem = 'ONE';
+                    id = 1;
                   });
-                  print("Rdb_Galatasaray Seçildi");
-                }
-            ),
-            RadioListTile(
-                title: Text("Fenerbahçe"),
+                },
+              ),
+              Text(
+                'ONE',
+                style: new TextStyle(fontSize: 17.0),
+              ),
+
+              Radio(
                 value: 2,
-                groupValue: radioDeger,
-                activeColor: Colors.red,
-                onChanged: (int? veri)
-                {
+                groupValue: id,
+                onChanged: (val) {
                   setState(() {
-                    radioDeger = veri!;
+                    radioButtonItem = 'TWO';
+                    id = 2;
                   });
-                  print("Rdb_Fenerbahçe Seçildi");
-                }
-            ),
-            ElevatedButton(
-              child: Text("Göster"),
-              onPressed: ()
-              {
-                if(radioDeger == 1)
-                {
-                  print("Button: Galatsaray Seçildi");
-                }
-                if(radioDeger == 2)
-                {
-                  print("Button: Fenerbahçe Seçildi");
-                }
-              },
-            ),
-
-
-          ],
-        ),
+                },
+              ),
+              Text(
+                'TWO',
+                style: new TextStyle(
+                  fontSize: 17.0,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

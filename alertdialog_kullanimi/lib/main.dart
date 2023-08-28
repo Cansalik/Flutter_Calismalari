@@ -75,12 +75,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
-
             ElevatedButton(
               child: Text("Özel Alert"),
               onPressed: ()
               {
-
                 showDialog(
                     context: context,
                     builder: (BuildContext contex)
@@ -123,11 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     }
                 );
-
-
               },
             ),
-
           ],
         ),
       ),
