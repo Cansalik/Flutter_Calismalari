@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_kullanimi/Kisiler.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -58,6 +59,117 @@ class _MyHomePageState extends State<MyHomePage> {
     refKisiler.child("-NdG8mgyeDfYoo8x3VGS").update(guncelBilgi);
   }
 
+  Future<void> tumKisilerStream() async
+  {
+    refKisiler.onValue.listen((event)
+    {
+      var gelenDegerler = event.snapshot.value as dynamic;
+
+      if(gelenDegerler!= null)
+      {
+        gelenDegerler.forEach((key,nesne)
+        {
+          var gelenKisi = Kisiler.fromJson(nesne);
+
+          print("**** **** ****");
+          print("Kişi Key: $key");
+          print("Kişi Yas: ${gelenKisi.kisi_yas}");
+          print("Kişi Ad: ${gelenKisi.kisi_ad}");
+        });
+      }
+    });
+  }
+
+  Future<void> tumKisilerOnce() async
+  {
+    refKisiler.once().then((event)
+    {
+      var gelenDegerler = event.snapshot.value as dynamic;
+
+      if(gelenDegerler!= null)
+      {
+        gelenDegerler.forEach((key,nesne)
+        {
+          var gelenKisi = Kisiler.fromJson(nesne);
+
+          print("**** **** ****");
+          print("Kişi Key: $key");
+          print("Kişi Yas: ${gelenKisi.kisi_yas}");
+          print("Kişi Ad: ${gelenKisi.kisi_ad}");
+        });
+      }
+    });
+  }
+
+  Future<void> tumKisilerFiltre() async
+  {
+    var sorgu = refKisiler.orderByChild("kisi_ad").equalTo("Neşet");
+    sorgu.onValue.listen((event)
+    {
+      var gelenDegerler = event.snapshot.value as dynamic;
+
+      if(gelenDegerler!= null)
+      {
+        gelenDegerler.forEach((key,nesne)
+        {
+          var gelenKisi = Kisiler.fromJson(nesne);
+
+          print("**** **** ****");
+          print("Kişi Key: $key");
+          print("Kişi Yas: ${gelenKisi.kisi_yas}");
+          print("Kişi Ad: ${gelenKisi.kisi_ad}");
+        });
+      }
+    });
+  }
+
+  Future<void> limitliVeri() async
+  {
+    var sorguFirst = refKisiler.limitToFirst(2);
+    var sorguLast = refKisiler.limitToLast(2);
+
+    sorguFirst.onValue.listen((event)
+    {
+      var gelenDegerler = event.snapshot.value as dynamic;
+
+      if(gelenDegerler!= null)
+      {
+        gelenDegerler.forEach((key,nesne)
+        {
+          var gelenKisi = Kisiler.fromJson(nesne);
+
+          print("**** **** ****");
+          print("Kişi Key: $key");
+          print("Kişi Yas: ${gelenKisi.kisi_yas}");
+          print("Kişi Ad: ${gelenKisi.kisi_ad}");
+        });
+      }
+    });
+  }
+
+  Future<void> degerAraligi() async
+  {
+    var sorgu = refKisiler.orderByChild("kisi_yas").startAt(30).endAt(100);
+
+    sorgu.onValue.listen((event)
+    {
+      var gelenDegerler = event.snapshot.value as dynamic;
+
+      if(gelenDegerler!= null)
+      {
+        gelenDegerler.forEach((key,nesne)
+        {
+          var gelenKisi = Kisiler.fromJson(nesne);
+
+          print("**** **** ****");
+          print("Kişi Key: $key");
+          print("Kişi Yas: ${gelenKisi.kisi_yas}");
+          print("Kişi Ad: ${gelenKisi.kisi_ad}");
+        });
+      }
+    });
+  }
+
 
   @override
   void initState() {
@@ -65,7 +177,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     //kisiEkle();
     //kisiSil();
-    kisiGuncelle();
+    //kisiGuncelle();
+    //tumKisilerStream();
+    //tumKisilerOnce();
+    //tumKisilerFiltre();
+    //limitliVeri();
+    degerAraligi();
   }
 
 
