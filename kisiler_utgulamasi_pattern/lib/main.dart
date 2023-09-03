@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_utgulamasi_pattern/Cubit/AnasayfaCubit.dart';
-import 'package:kisiler_utgulamasi_pattern/Cubit/KisiDetayCubit.dart';
-import 'package:kisiler_utgulamasi_pattern/Cubit/KisiKayitCubit.dart';
-import 'package:kisiler_utgulamasi_pattern/views/anasayfa.dart';
+import 'package:kisiler_utgulamasi_pattern/Cubit/HomePage_Cubit.dart';
+import 'package:kisiler_utgulamasi_pattern/Cubit/ContactDetail_Cubit.dart';
+import 'package:kisiler_utgulamasi_pattern/Cubit/ContactAdd_Cubit.dart';
+import 'package:kisiler_utgulamasi_pattern/Views/HomePage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => KisiKayitCubit()),
-        BlocProvider(create: (context) => KisiDetayCubit()),
-        BlocProvider(create: (context) => AnasayfaCubit()),
+        BlocProvider(create: (context) => ContactAdd_Cubit()),
+        BlocProvider(create: (context) => ContactDetail_Cubit()),
+        BlocProvider(create: (context) => HomePage_Cubit()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.deepOrange,
         ),
-        home: Anasayfa(),
+        home: HomePage(),
       ),
     );
   }

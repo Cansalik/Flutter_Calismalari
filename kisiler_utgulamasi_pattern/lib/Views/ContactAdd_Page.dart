@@ -1,43 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_utgulamasi_pattern/Cubit/KisiDetayCubit.dart';
-import 'package:kisiler_utgulamasi_pattern/entity/Kisiler.dart';
-import 'package:kisiler_utgulamasi_pattern/views/anasayfa.dart';
+import 'package:kisiler_utgulamasi_pattern/Cubit/ContactAdd_Cubit.dart';
+import 'package:kisiler_utgulamasi_pattern/Views/HomePage.dart';
 
-class KisiDetaySayfa extends StatefulWidget {
-
-  Kisiler kisi;
-
-  KisiDetaySayfa({required this.kisi});
+class ContactAdd_Page extends StatefulWidget {
+  const ContactAdd_Page({Key? key}) : super(key: key);
 
   @override
-  State<KisiDetaySayfa> createState() => _KisiDetaySayfaState();
+  State<ContactAdd_Page> createState() => _ContactAdd_PageState();
 }
 
-class _KisiDetaySayfaState extends State<KisiDetaySayfa> {
+class _ContactAdd_PageState extends State<ContactAdd_Page> {
 
-  var tfKisiAd = TextEditingController();
-  var tfKisiTel = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    var kisi = widget.kisi;
-    tfKisiAd.text = kisi.kisi_ad;
-    tfKisiTel.text = kisi.kisi_tel;
-  }
-
-  Future<void> guncelle(int kisi_id,String kisi_ad, String kisi_tel) async
-  {
-    print("Kişi Kayıt: $kisi_id - $kisi_ad - $kisi_tel");
-  }
-
+  var tfContactName = TextEditingController();
+  var tfContactPhone = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kişi Detyaları"),
+        title: const Text("Kişiler"),
       ),
       body: Center(
         child: Padding(
@@ -45,8 +27,9 @@ class _KisiDetaySayfaState extends State<KisiDetaySayfa> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              SizedBox( width: 200,height:200,child: Image.asset("assets/images/add-user.png")),
               TextField(
-                controller: tfKisiAd,
+                controller: tfContactName,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -56,7 +39,7 @@ class _KisiDetaySayfaState extends State<KisiDetaySayfa> {
               ),
               TextField(
                 keyboardType:TextInputType.number,
-                controller: tfKisiTel,
+                controller: tfContactPhone,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
@@ -68,11 +51,11 @@ class _KisiDetaySayfaState extends State<KisiDetaySayfa> {
                 width: 300,
                 height: 50,
                 child: ElevatedButton(
-                    child: Text("Güncelle"),
+                  child: Text("Kaydet"),
                     onPressed: ()
                     {
-                      context.read<KisiDetayCubit>().guncelle(widget.kisi.kisi_id, tfKisiAd.text, tfKisiTel.text);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Anasayfa()));
+                      context.read<ContactAdd_Cubit>().add(tfContactName.text, tfContactPhone.text);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
                     }
                 ),
               ),

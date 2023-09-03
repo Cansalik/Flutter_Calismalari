@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kisiler_utgulamasi_pattern/Cubit/AnasayfaCubit.dart';
-import 'package:kisiler_utgulamasi_pattern/entity/Kisiler.dart';
-import 'package:kisiler_utgulamasi_pattern/views/kisi_detay_sayfa.dart';
-import 'package:kisiler_utgulamasi_pattern/views/kisi_kayit_sayfa.dart';
+import 'package:kisiler_utgulamasi_pattern/Cubit/HomePage_Cubit.dart';
+import 'package:kisiler_utgulamasi_pattern/Entity/Contacts.dart';
+import 'package:kisiler_utgulamasi_pattern/Views/ContactAdd_Page.dart';
+import 'package:kisiler_utgulamasi_pattern/Views/ContactDetail_Page.dart';
 
-class Anasayfa extends StatefulWidget {
-  const Anasayfa({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<Anasayfa> createState() => _AnasayfaState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AnasayfaState extends State<Anasayfa> {
+class _HomePageState extends State<HomePage> {
 
-  bool aramaYapiliyorMu = false;
+  bool _isSearching = false;
 
   @override
   void initState() {
     super.initState();
-    context.read<AnasayfaCubit>().kisileriYukle();
+    context.read<HomePage_Cubit>().contactsLoad();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: aramaYapiliyorMu ? TextField(
+        title: _isSearching ? TextField(
           style: TextStyle(color: Colors.white),
           decoration: const InputDecoration(
             hintText: "Ara",
@@ -35,41 +35,42 @@ class _AnasayfaState extends State<Anasayfa> {
         autofocus: true,
         onChanged: (aramaSonucu)
         {
-          context.read<AnasayfaCubit>().ara(aramaSonucu);
+          context.read<HomePage_Cubit>().search(aramaSonucu);
         },
         ) : const Text("Kişiler"),
         actions: [
-          aramaYapiliyorMu ?
+          _isSearching ?
           IconButton(onPressed: ()
             {
               setState(() {
-                aramaYapiliyorMu = false;
-                context.read<AnasayfaCubit>().kisileriYukle();
+                _isSearching = false;
+                context.read<HomePage_Cubit>().contactsLoad();
               });
             }, icon: Icon(Icons.cancel),) :
           IconButton(onPressed: ()
           {
             setState(() {
-              aramaYapiliyorMu = true;
+              _isSearching = true;
             });
           }, icon: Icon(Icons.search),)
         ],
       ),
-      body: BlocBuilder<AnasayfaCubit,List<Kisiler>>(
-        builder: (context, kisilerListesi)
+      body: BlocBuilder<HomePage_Cubit,List<Contacts>>(
+        builder: (context, contactsList)
         {
-          if(kisilerListesi.isNotEmpty)
+          if(contactsList.isNotEmpty)
           {
             return ListView.builder(
-              itemCount: kisilerListesi.length,
+              itemCount: contactsList.length,
               itemBuilder: (context, index)
               {
-                var kisi = kisilerListesi[index];
+                var contact = contactsList[index];
                 return GestureDetector(
                   onTap: ()
                   {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => KisiDetaySayfa(kisi: kisi))).then((value) =>
-                    {
+
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ContactDetail_Page(contact: contact))).then((value) => {
+
                     });
                   },
                   child: Card(
@@ -77,23 +78,34 @@ class _AnasayfaState extends State<Anasayfa> {
                       padding: const EdgeInsets.all(12.0),
                       child: Row(
                         children: [
-                          Text("${kisi.kisi_ad} - ${kisi.kisi_tel}"),
+                          SizedBox(width: 50,height: 50,child: Image.asset("assets/images/people.png")),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(contact.contact_name,style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+                                SizedBox(height: 5,),
+                                Text("${contact.contact_phone}",style: TextStyle(fontSize: 16,color: Colors.blue),),
+                              ],
+                            ),
+                          ),
                           Spacer(),
                           IconButton(onPressed: ()
                           {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text("${kisi.kisi_ad} Silinsin mi ?"),
+                                content: Text("${contact.contact_name} Silinsin mi ?"),
                                 action: SnackBarAction(
                                   label: "EVET",
                                   onPressed: ()
                                   {
-                                    context.read<AnasayfaCubit>().sil(kisi.kisi_id);
+                                    context.read<HomePage_Cubit>().delete(contact.contact_id);
                                   },
                                 ),
                               ),
                             );
-                          }, icon: Icon(Icons.delete_outline),color: Colors.black54,),
+                          }, icon: Icon(Icons.delete_outline),color: Colors.red[400],),
                         ],
                       ),
                     ),
@@ -113,7 +125,7 @@ class _AnasayfaState extends State<Anasayfa> {
           child: const Icon(Icons.add),
           onPressed: ()
           {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => KisiKayitSayfa())).then((value) =>
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ContactAdd_Page())).then((value) =>
             {
               print("Anasayfaya Dönüldü"),
             });
