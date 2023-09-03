@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "321764383501",
+    "firebase_url": "https://egitim2-a7cb1-default-rtdb.firebaseio.com",
+    "project_id": "egitim2-a7cb1",
+    "storage_bucket": "egitim2-a7cb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321764383501:android:ec0afe08514f82184dee44",
+        "android_client_info": {
+          "package_name": "com.example.kisiler_utgulamasi_pattern"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321764383501-hh01vmmef49u3p07vulbk7m5jadumuad.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxHm0tGuInq3hFNYlcmMMpq06ZNjp8QeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321764383501-hh01vmmef49u3p07vulbk7m5jadumuad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
