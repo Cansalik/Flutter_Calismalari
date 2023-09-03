@@ -102,13 +102,11 @@ class _AnasayfaState extends State<Anasayfa> {
             {
               var kisilerListesi = <Kisiler>[];
               var gelenDegerler = event.data!.snapshot.value as dynamic;
-
               if(gelenDegerler != null)
               {
                 gelenDegerler.forEach((key, nesne)
                 {
                   var gelenKisi = Kisiler.fromJson(key, nesne);
-
                   if(aramaYapiliyorMu)
                   {
                     if(gelenKisi.kisi_ad.contains(aramKelime))
