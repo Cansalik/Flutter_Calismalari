@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "30945106243",
+    "project_id": "udemyegitim2-49a2e",
+    "storage_bucket": "udemyegitim2-49a2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30945106243:android:f4a5ea01d9c86cde30f7f6",
+        "android_client_info": {
+          "package_name": "com.example.firebase_kullanimi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "30945106243-pgfbllcccc1k8f87in21ibeb6tkj0gof.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfR-4OLAMWpsBEdbFQO84uOQyii9MmxXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "30945106243-pgfbllcccc1k8f87in21ibeb6tkj0gof.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
